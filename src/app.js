@@ -6,7 +6,7 @@ import userRouter from './routes/user.routes.js';
 const app = express();
 
 app.use(cors({
-    origin: 'https://ytbackend-r3du.onrender.com/',
+    origin: process.env.CORS_ORIGIN || '*',
     credentials: true,
 }))
 
