@@ -214,9 +214,9 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
 })
 
 const getCurrentUser = asyncHandler(async (req, res) => {
-     return res
-          .status(200)
-          .json(200, req.user, "current user fetched successfully")
+     return res.status(200).json(
+          new ApiResponse(200, req.users, "Users Fetched Successfully")
+     );
 })
 
 const updateAccountDetails = asyncHandler(async (req, res) => {
@@ -299,7 +299,7 @@ const updateUserCoverImage = asyncHandler(async(req, res)=>{
 })
 
 const getAllUsers = asyncHandler(async(req, res)=>{
-     const users = await User.find({}).select("-password -refreshToken");
+     const users = await User.find({}).select("-password -refreshToken")
 
      if (!users || users.length === 0) {
           throw new ApiError(404, "No users found");
